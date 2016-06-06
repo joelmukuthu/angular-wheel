@@ -1,8 +1,8 @@
 {
-  "name": "angular-wheel",
+  "name": "angular-wheelie",
   "version": "0.0.2",
   "description": "Mousewheel as an angular service",
-  "main": "dist/angular-wheel.js",
+  "main": "dist/angular-wheelie.js",
   "scripts": {
     "lint": "eslint .",
     "test": "mocha-phantomjs test/index.html",
@@ -43,10 +43,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joelmukuthu/angular-wheel.git"
+    "url": "git+https://github.com/joelmukuthu/angular-wheelie.git"
   },
   "bugs": {
-    "url": "https://github.com/joelmukuthu/angular-wheel/issues"
+    "url": "https://github.com/joelmukuthu/angular-wheelie/issues"
   },
-  "homepage": "https://github.com/joelmukuthu/angular-wheel#readme"
+  "homepage": "https://github.com/joelmukuthu/angular-wheelie#readme"
 }

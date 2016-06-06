@@ -1,8 +1,8 @@
-describe('Module: jm.wheel', function () {
+describe('Module: wheelie', function () {
     it('is created', function () {
         var app;
         expect(function () {
-            app = angular.module('jm.wheel');
+            app = angular.module('wheelie');
         }, 'not to error');
         expect(app, 'to be defined');
     });

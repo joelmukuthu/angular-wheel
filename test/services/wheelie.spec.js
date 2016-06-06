@@ -1,7 +1,7 @@
-describe('Service: jmWheel', function () {
+describe('Service: wheelie', function () {
     var element;
 
-    beforeEach(module('jm.wheel'));
+    beforeEach(module('wheelie'));
 
     beforeEach(function () {
         var html = [
@@ -17,21 +17,21 @@ describe('Service: jmWheel', function () {
         angular.element(document).find('body').empty();
     });
 
-    it('provides a \'bind\' function and an \'unbind\' function', inject(function (jmWheel) {
-        expect(jmWheel.bind, 'to be a function');
-        expect(jmWheel.unbind, 'to be a function');
+    it('provides a \'bind\' function and an \'unbind\' function', inject(function (wheelie) {
+        expect(wheelie.bind, 'to be a function');
+        expect(wheelie.unbind, 'to be a function');
     }));
 
     describe('.bind', function () {
-        var jmWheel;
+        var wheelie;
 
-        beforeEach(inject(function (_jmWheel_) {
-            jmWheel = _jmWheel_;
+        beforeEach(inject(function (_wheelie_) {
+            wheelie = _wheelie_;
         }));
 
         it('throws an error if an \'up\' callback is provided but is not a function', function () {
             expect(function () {
-                jmWheel.bind(element, {
+                wheelie.bind(element, {
                     up: 1
                 });
             }, 'to throw', new Error('The \'up\' callback must be a function'));
@@ -39,7 +39,7 @@ describe('Service: jmWheel', function () {
 
         it('throws an error if a \'down\' callback is provided but is not a function', function () {
             expect(function () {
-                jmWheel.bind(element, {
+                wheelie.bind(element, {
                     down: ''
                 });
             }, 'to throw', new Error('The \'down\' callback must be a function'));
@@ -47,13 +47,13 @@ describe('Service: jmWheel', function () {
 
         it('throws an error if neither \'up\' or \'down\' callbacks are provided', function () {
             expect(function () {
-                jmWheel.bind(element, {});
+                wheelie.bind(element, {});
             }, 'to throw', new Error('At least one callback (\'up\' or \'down\') must be provided'));
         });
 
         it('does not throw an error if only an \'up\' callback is provided', function () {
             expect(function () {
-                jmWheel.bind(element, {
+                wheelie.bind(element, {
                     up: function () {}
                 });
             }, 'not to error');
@@ -61,18 +61,18 @@ describe('Service: jmWheel', function () {
 
         it('does not throw an error if only a \'down\' callback is provided', function () {
             expect(function () {
-                jmWheel.bind(element, {
+                wheelie.bind(element, {
                     down: function () {}
                 });
             }, 'not to error');
         });
 
         it('stores a reference to the \'bindWheel\' function in the element\'s data', function () {
-            jmWheel.bind(element, {
+            wheelie.bind(element, {
                 down: function () {},
                 up: function () {}
             });
-            expect(element.data('___jmWheel_bindWheel___'), 'to be a function');
+            expect(element.data('___wheelie_bindWheel___'), 'to be a function');
         });
     });
 
@@ -80,11 +80,11 @@ describe('Service: jmWheel', function () {
         var upSpy,
             downSpy;
 
-        beforeEach(inject(function (_jmWheel_) {
+        beforeEach(inject(function (_wheelie_) {
             upSpy = sinon.spy().named('mousewheelUp');
             downSpy = sinon.spy().named('mousewheelDown');
 
-            _jmWheel_.bind(element, {
+            _wheelie_.bind(element, {
                 up: upSpy,
                 down: downSpy
             });
@@ -190,22 +190,22 @@ describe('Service: jmWheel', function () {
     describe('.unbind', function () {
         var upSpy,
             downSpy,
-            jmWheel;
+            wheelie;
 
-        beforeEach(inject(function (_jmWheel_) {
-            jmWheel = _jmWheel_;
+        beforeEach(inject(function (_wheelie_) {
+            wheelie = _wheelie_;
             upSpy = sinon.spy().named('mousewheelUp');
             downSpy = sinon.spy().named('mousewheelDown');
 
-            jmWheel.bind(element, {
+            wheelie.bind(element, {
                 up: upSpy,
                 down: downSpy
             });
         }));
 
         it('unsets the reference to the \'bindWheel\' function in the element\'s data', function () {
-            jmWheel.unbind(element);
-            expect(element.data('___jmWheel_bindWheel___'), 'to be null');
+            wheelie.unbind(element);
+            expect(element.data('___wheelie_bindWheel___'), 'to be null');
         });
 
         it('prevents further calling of the \'up\' and \'down\' callbacks', function () {
@@ -233,7 +233,7 @@ describe('Service: jmWheel', function () {
 
             upSpy.reset();
             downSpy.reset();
-            jmWheel.unbind(element);
+            wheelie.unbind(element);
 
             element.triggerHandler({
                 type: 'wheel',
@@ -249,8 +249,8 @@ describe('Service: jmWheel', function () {
         });
 
         it('does not unbind if the reference to the \'bindWheel\' function in the element\'s data does not exist', function () {
-            element.data('___jmWheel_bindWheel___', null);
-            jmWheel.unbind(element);
+            element.data('___wheelie_bindWheel___', null);
+            wheelie.unbind(element);
 
             element.triggerHandler({
                 type: 'wheel',
@@ -265,8 +265,8 @@ describe('Service: jmWheel', function () {
         });
 
         it('does not unbind if the reference to the \'bindWheel\' function in the element\'s data is not a function', function () {
-            element.data('___jmWheel_bindWheel___', true);
-            jmWheel.unbind(element);
+            element.data('___wheelie_bindWheel___', true);
+            wheelie.unbind(element);
 
             element.triggerHandler({
                 type: 'wheel',

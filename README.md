@@ -1,36 +1,36 @@
-# angular-wheel
-[![Build Status](https://travis-ci.org/joelmukuthu/angular-wheel.svg?branch=master)](https://travis-ci.org/joelmukuthu/angular-wheel) [![Dependency Status](https://david-dm.org/joelmukuthu/angular-wheel.svg)](https://david-dm.org/joelmukuthu/angular-wheel) [![Licence](https://img.shields.io/npm/l/angular-wheel.svg?maxAge=2592000)]() [![Coverage Status](https://coveralls.io/repos/joelmukuthu/angular-wheel/badge.svg)](https://coveralls.io/r/joelmukuthu/angular-wheel) [![Bower version](https://img.shields.io/bower/v/angular-wheel.svg?maxAge=2592000)]() [![npm version](https://img.shields.io/npm/v/angular-wheel.svg?maxAge=2592000)]()
+# angular-wheely
+[![Build Status](https://travis-ci.org/joelmukuthu/angular-wheely.svg?branch=master)](https://travis-ci.org/joelmukuthu/angular-wheely) [![Dependency Status](https://david-dm.org/joelmukuthu/angular-wheely.svg)](https://david-dm.org/joelmukuthu/angular-wheely) [![Licence](https://img.shields.io/npm/l/angular-wheely.svg?maxAge=2592000)]() [![Coverage Status](https://coveralls.io/repos/joelmukuthu/angular-wheely/badge.svg)](https://coveralls.io/r/joelmukuthu/angular-wheely) [![Bower version](https://img.shields.io/bower/v/angular-wheely.svg?maxAge=2592000)]() [![npm version](https://img.shields.io/npm/v/angular-wheely.svg?maxAge=2592000)]()
 
-angular-wheel exposes a service that allows you to bind mousewheel events to an angular element.
+angular-wheely exposes a service that allows you to bind mousewheel events to an angular element.
 
 ### Installation
 Install with bower:
 ```sh
-bower install angular-wheel
+bower install angular-wheely
 ```
 Or with npm:
 ```sh
-npm install angular-wheel
+npm install angular-wheely
 ```
-Or simply download the [latest release](https://github.com/joelmukuthu/angular-wheel/releases/latest).
+Or simply download the [latest release](https://github.com/joelmukuthu/angular-wheely/releases/latest).
 
 ### Usage
 The pre-built files can be found in the `dist/` directory.
-`dist/angular-wheel.min.js` is minified and production-ready. Example usage:
+`dist/angular-wheely.min.js` is minified and production-ready. Example usage:
 ```html
-<script src="dist/angular-wheel.min.js"></script>
+<script src="dist/angular-wheely.min.js"></script>
 ```
-Add `jm.wheel` to your app's module dependencies:
+Add `wheely` to your app's module dependencies:
 ```javascript
-angular.module('myapp', ['jm.wheel']);
+angular.module('myapp', ['wheely']);
 ```
-And now you can use the `jmWheel` service in your controllers, directives,
+And now you can use the `wheely` service in your controllers, directives,
 services etc. Example usage in a controller:
 ```javascript
-app.controller('MyController', ['jmWheel', function (jmWheel) {
+app.controller('MyController', ['wheelie', function (wheelie) {
     var target = angular.element('#someElement');
     // To listen for mousewheel events
-    jmWheel.bind(target, {
+    wheelie.bind(target, {
         up: function (event) {
             console.log('mousewheel up on element #someElement!');
         },
@@ -40,7 +40,7 @@ app.controller('MyController', ['jmWheel', function (jmWheel) {
         }
     });
     // To unbind:
-    jmWheel.unbind(target);
+    wheelie.unbind(target);
 }]);
 ```
 

@@ -1,6 +1,6 @@
 angular
-.module('jm.wheel')
-.factory('jmWheel', [function () {
+.module('wheelie')
+.factory('wheelie', [function () {
     return {
         bind: function (element, callbacks) {
             callbacks = callbacks || {};
@@ -34,14 +34,14 @@ angular
                 }
             }
 
-            element.data('___jmWheel_bindWheel___', bindWheel);
+            element.data('___wheelie_bindWheel___', bindWheel);
             element.on('wheel mousewheel onmousewheel', bindWheel);
         },
 
         unbind: function (element) {
-            var bindWheel = element.data('___jmWheel_bindWheel___');
+            var bindWheel = element.data('___wheelie_bindWheel___');
             if (angular.isFunction(bindWheel)) {
-                element.data('___jmWheel_bindWheel___', null);
+                element.data('___wheelie_bindWheel___', null);
                 element.off('wheel mousewheel onmousewheel', bindWheel);
             }
         }

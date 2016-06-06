@@ -1,8 +1,8 @@
 {
-  "name": "angular-wheel",
+  "name": "angular-wheelie",
   "version": "0.0.2",
   "description": "Mousewheel as an angular service",
-  "main": "dist/angular-wheel.js",
+  "main": "dist/angular-wheelie.js",
   "authors": [
     "Joel Mukuthu <joelmukuthu@gmail.com>"
   ],
@@ -12,7 +12,7 @@
     "wheel",
     "mousewheel"
   ],
-  "homepage": "https://github.com/joelmukuthu/angular-wheel.git",
+  "homepage": "https://github.com/joelmukuthu/angular-wheelie.git",
   "ignore": [
     "**/.*",
     "src",
