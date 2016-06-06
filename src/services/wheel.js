@@ -1,5 +1,6 @@
-var jmWheel = angular.module('jm.wheel');
-jmWheel.factory('jmWheel', [function () {
+angular
+.module('jm.wheel')
+.factory('jmWheel', [function () {
     return {
         bind: function (element, callbacks) {
             callbacks = callbacks || {};
