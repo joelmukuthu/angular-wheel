@@ -1,0 +1,25 @@
+{
+  "name": "angular-wheel",
+  "version": "0.2.6",
+  "description": "Mousewheel as an angular service",
+  "main": "dist/angular-wheel.js",
+  "authors": [
+    "Joel Mukuthu <joelmukuthu@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "wheel",
+    "mousewheel"
+  ],
+  "homepage": "https://github.com/joelmukuthu/angular-wheel.git",
+  "ignore": [
+    "**/.*",
+    "src",
+    "node_modules",
+    "bower_components",
+    "Gruntfile.js",
+    "CONTRIBUTING.md",
+    "test"
+  ]
+}
