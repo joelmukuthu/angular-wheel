@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "test": "mocha-phantomjs test/index.html",
     "build": "npm run lint && npm test && grunt build",
-    "prepublish": "npm run build"
+    "prepublish": "npm run lint && npm test"
   },
   "keywords": [
     "angular",
