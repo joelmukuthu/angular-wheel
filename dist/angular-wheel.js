@@ -1,9 +1,9 @@
 /**
  * angular-wheel
- * Version: 0.0.1
+ * Version: 0.0.2
  * (c) 2014-2016 Joel Mukuthu
  * MIT License
- * Built on: 07-06-2016 00:33:07 GMT+0200
+ * Built on: 07-06-2016 00:45:51 GMT+0200
  **/
 
 angular.module('jm.wheel', []);
