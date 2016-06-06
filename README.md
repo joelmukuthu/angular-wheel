@@ -50,13 +50,12 @@ Contributions are welcomed! Here are the [contribution guidelines](CONTRIBUTING.
 First clone the repository and install dependencies:
 ```sh
 npm install
-
+```
 To run tests:
 ```sh
 npm test
-# or npm test -- --watch to run tests continuously
 ```
-To lint the source code:
+To lint the code:
 ```sh
 npm run lint
 ```
