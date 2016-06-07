@@ -4,6 +4,7 @@
         "it": true,
         "expect": true,
         "inject": true,
-        "sinon": true
+        "sinon": true,
+        "weknowhow": true
     }
 }
