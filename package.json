@@ -1,6 +1,6 @@
 {
   "name": "angular-wheelie",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mousewheel as an angular service",
   "main": "dist/angular-wheelie.js",
   "scripts": {
