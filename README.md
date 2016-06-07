@@ -27,7 +27,7 @@ angular.module('myapp', ['wheelie']);
 And now you can use the `wheelie` service in your controllers, directives,
 services etc. Example usage in a controller:
 ```javascript
-app.controller('MyController', ['wheelie', function (wheelie) {
+app.controller('MyController', [ '$scope', 'wheelie', function ($scope, wheelie) {
     var target = angular.element('#someElement');
     // To listen for mousewheel events
     wheelie.bind(target, {
@@ -40,7 +40,9 @@ app.controller('MyController', ['wheelie', function (wheelie) {
         }
     });
     // To unbind:
-    wheelie.unbind(target);
+    $scope.on('$destroy', function () {
+        wheelie.unbind(target);
+    });
 }]);
 ```
 
