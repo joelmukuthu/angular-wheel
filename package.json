@@ -9,7 +9,16 @@
     "build": "npm run lint && npm test && grunt build",
     "prepublish": "npm run lint && npm test",
     "coverage": "nyc npm test",
-    "travis": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "travis": "nyc --all npm test && nyc report --reporter=text-lcov | coveralls"
+  },
+  "nyc": {
+    "exclude": [
+      "test",
+      "dist"
+    ],
+    "include": [
+      "src"
+    ]
   },
   "keywords": [
     "angular",
