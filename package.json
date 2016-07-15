@@ -17,7 +17,7 @@
   "author": "Joel Mukuthu <joelmukuthu@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "angular-mocks": "^1.5.6",
+    "angular-mocks": "^1.2.24",
     "eslint": "^2.11.1",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
@@ -38,10 +38,10 @@
     "unexpected-sinon": "^10.2.1"
   },
   "dependencies": {
-    "angular": "^1.5.6"
+    "angular": "^1.2.24"
   },
   "peerDependencies": {
-    "angular": "^1.5.6"
+    "angular": "^1.2.24"
   },
   "directories": {
     "test": "test"
