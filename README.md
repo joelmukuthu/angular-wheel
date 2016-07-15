@@ -1,7 +1,8 @@
 # angular-wheelie
 [![Build Status](https://travis-ci.org/joelmukuthu/angular-wheelie.svg?branch=master)](https://travis-ci.org/joelmukuthu/angular-wheelie) [![Dependency Status](https://david-dm.org/joelmukuthu/angular-wheelie.svg)](https://david-dm.org/joelmukuthu/angular-wheelie) [![Licence](https://img.shields.io/npm/l/angular-wheelie.svg)](https://github.com/joelmukuthu/angular-wheelie/blob/master/LICENSE.md) [![Coverage Status](https://coveralls.io/repos/github/joelmukuthu/angular-wheelie/badge.svg?branch=master)](https://coveralls.io/github/joelmukuthu/angular-wheelie?branch=master) [![Bower version](https://img.shields.io/bower/v/angular-wheelie.svg)](https://github.com/joelmukuthu/angular-wheelie) [![npm version](https://img.shields.io/npm/v/angular-wheelie.svg)](https://www.npmjs.com/package/angular-wheelie)
 
-angular-wheelie exposes a service that allows you to bind mousewheel events to an angular element.
+angular-wheelie exposes a service that allows you to bind mousewheel events to
+an angular element.
 
 ### Installation
 Install with bower:
