@@ -12,6 +12,9 @@
     "wheel",
     "mousewheel"
   ],
+  "dependencies": {
+    "angular": "^1.2.24"
+  },
   "homepage": "https://github.com/joelmukuthu/angular-wheelie.git",
   "ignore": [
     "**/.*",
