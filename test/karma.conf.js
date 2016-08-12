@@ -1,3 +1,15 @@
+var reporters = [
+    'mocha',
+    'coverage'
+];
+
+var coverageType = 'html';
+
+if (process.env.TRAVIS) {
+    coverageType = 'lcov';
+    reporters.push('coveralls');
+}
+
 module.exports = function (config) {
     config.set({
         browsers: [ 'PhantomJS' ],
@@ -9,7 +21,7 @@ module.exports = function (config) {
             'karma-mocha-reporter'
         ],
         frameworks: [ 'mocha' ],
-        reporters: [ 'mocha', 'coverage', 'coveralls' ],
+        reporters: reporters,
         client: {
             mocha: {
                 ui: 'bdd'
@@ -31,8 +43,8 @@ module.exports = function (config) {
             'src/**/*.js': [ 'coverage' ]
         },
         coverageReporter: {
-            type : 'lcov',
-            dir : 'coverage/'
+            dir: 'coverage/',
+            type: coverageType
         },
         singleRun: true
     });
