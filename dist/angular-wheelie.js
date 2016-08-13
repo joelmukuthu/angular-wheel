@@ -1,9 +1,9 @@
 /**
  * angular-wheelie
- * Version: 1.1.1
- * (c) 2014-2016 Joel Mukuthu
+ * Version: 1.1.2
+ * (c) 2016 Joel Mukuthu
  * MIT License
- * Built on: 02-08-2016 02:11:06 GMT+0200
+ * Built on: 13-08-2016 17:06:59 GMT+0200
  **/
 
 angular.module('wheelie', []);
