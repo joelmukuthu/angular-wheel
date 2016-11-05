@@ -34,17 +34,14 @@ angular
                     e = e.originalEvent;
                 }
 
-                var deltaX = Math.max(-1, Math.min(1, -e.deltaX));
-                var deltaY = Math.max(-1, Math.min(1, -e.deltaY));
-
-                if (deltaX) {
-                    deltaX > 0 && callbacks.left && callbacks.left(e);
-                    deltaX < 0 && callbacks.right && callbacks.right(e);
+                if (e.deltaX) {
+                    e.deltaX < 0 && callbacks.left && callbacks.left(e);
+                    e.deltaX > 0 && callbacks.right && callbacks.right(e);
                 }
 
-                if (deltaY) {
-                    deltaY > 0 && callbacks.up && callbacks.up(e);
-                    deltaY < 0 && callbacks.down && callbacks.down(e);
+                if (e.deltaY) {
+                    e.deltaY < 0 && callbacks.up && callbacks.up(e);
+                    e.deltaY > 0 && callbacks.down && callbacks.down(e);
                 }
             }
 
