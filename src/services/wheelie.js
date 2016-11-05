@@ -35,14 +35,14 @@ angular
             }
 
             element.data('___wheelie_bindWheel___', bindWheel);
-            element.on('wheel mousewheel onmousewheel', bindWheel);
+            element.on('wheel', bindWheel);
         },
 
         unbind: function (element) {
             var bindWheel = element.data('___wheelie_bindWheel___');
             if (angular.isFunction(bindWheel)) {
                 element.data('___wheelie_bindWheel___', null);
-                element.off('wheel mousewheel onmousewheel', bindWheel);
+                element.off('wheel', bindWheel);
             }
         }
     };
