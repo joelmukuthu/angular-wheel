@@ -1,16 +1,20 @@
 angular
 .module('wheelie')
 .factory('wheelie', [function () {
+    var isDefined = angular.isDefined;
+    var isFunction = angular.isFunction;
+
     return {
         bind: function (element, callbacks) {
             callbacks = callbacks || {};
-            if (angular.isDefined(callbacks.up) && !angular.isFunction(callbacks.up)) {
+
+            if (isDefined(callbacks.up) && !isFunction(callbacks.up)) {
                 throw new Error('The \'up\' callback must be a function');
             }
-            if (angular.isDefined(callbacks.down) && !angular.isFunction(callbacks.down)) {
+            if (isDefined(callbacks.down) && !isFunction(callbacks.down)) {
                 throw new Error('The \'down\' callback must be a function');
             }
-            if (!angular.isDefined(callbacks.up) && !angular.isDefined(callbacks.down)) {
+            if (!isDefined(callbacks.up) && !isDefined(callbacks.down)) {
                 throw new Error('At least one callback (\'up\' or \'down\') must be provided');
             }
 
@@ -18,18 +22,17 @@ angular
                 if (e.originalEvent) {
                     e = e.originalEvent;
                 }
+
                 var delta = Math.max(-1, Math.min(1, -e.deltaY));
+
                 if (isNaN(delta) || delta === 0) {
                     return;
                 }
+
                 if (delta > 0) {
-                    if (callbacks.up) {
-                        callbacks.up(e);
-                    }
+                    callbacks.up && callbacks.up(e);
                 } else {
-                    if (callbacks.down) {
-                        callbacks.down(e);
-                    }
+                    callbacks.down && callbacks.down(e);
                 }
             }
 
@@ -39,7 +42,7 @@ angular
 
         unbind: function (element) {
             var bindWheel = element.data('___wheelie_bindWheel___');
-            if (angular.isFunction(bindWheel)) {
+            if (isFunction(bindWheel)) {
                 element.data('___wheelie_bindWheel___', null);
                 element.off('wheel', bindWheel);
             }
