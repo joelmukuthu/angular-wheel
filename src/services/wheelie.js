@@ -18,8 +18,7 @@ angular
                 if (e.originalEvent) {
                     e = e.originalEvent;
                 }
-                var delta;
-                delta = Math.max(-1, Math.min(1, (e.wheelDelta || -(e.deltaY || e.detail))));
+                var delta = Math.max(-1, Math.min(1, -e.deltaY));
                 if (isNaN(delta) || delta === 0) {
                     return;
                 }

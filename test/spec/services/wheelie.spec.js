@@ -93,15 +93,11 @@ describe('Service: wheelie', function () {
         it('calls the \'up\' callback with the event on mousewheel up', function () {
             element.triggerHandler({
                 type: 'wheel',
-                wheelDelta: 120,
-                detail: -120,
                 deltaY: -120
             });
             expect(upSpy, 'to have calls satisfying', function () {
                 upSpy({
                     type: 'wheel',
-                    wheelDelta: 120,
-                    detail: -120,
                     deltaY: -120
                 });
             });
@@ -110,15 +106,11 @@ describe('Service: wheelie', function () {
         it('calls the \'down\' callback with the event on mousewheel down', function () {
             element.triggerHandler({
                 type: 'wheel',
-                wheelDelta: -120,
-                detail: 120,
                 deltaY: 120
             });
             expect(downSpy, 'to have calls satisfying', function () {
                 downSpy({
                     type: 'wheel',
-                    wheelDelta: -120,
-                    detail: 120,
                     deltaY: 120
                 });
             });
@@ -127,8 +119,6 @@ describe('Service: wheelie', function () {
         it('does not call the \'up\' callback on mousewheel down', function () {
             element.triggerHandler({
                 type: 'wheel',
-                wheelDelta: -120,
-                detail: 120,
                 deltaY: 120
             });
             expect(upSpy, 'was not called');
@@ -137,8 +127,6 @@ describe('Service: wheelie', function () {
         it('does not call the \'down\' callback on mousewheel up', function () {
             element.triggerHandler({
                 type: 'wheel',
-                wheelDelta: 120,
-                detail: -120,
                 deltaY: -120
             });
             expect(downSpy, 'was not called');
