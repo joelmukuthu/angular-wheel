@@ -45,10 +45,28 @@ describe('Service: wheelie', function () {
             }, 'to throw', new Error('The \'down\' callback must be a function'));
         });
 
-        it('throws an error if neither \'up\' or \'down\' callbacks are provided', function () {
+        it('throws an error if a \'left\' callback is provided but is not a function', function () {
+            expect(function () {
+                wheelie.bind(element, {
+                    left: 1
+                });
+            }, 'to throw', new Error('The \'left\' callback must be a function'));
+        });
+
+        it('throws an error if an \'right\' callback is provided but is not a function', function () {
+            expect(function () {
+                wheelie.bind(element, {
+                    right: 1
+                });
+            }, 'to throw', new Error('The \'right\' callback must be a function'));
+        });
+
+        it('throws an error if no callbacks are provided', function () {
             expect(function () {
                 wheelie.bind(element, {});
-            }, 'to throw', new Error('At least one callback (\'up\' or \'down\') must be provided'));
+            }, 'to throw', new Error(
+                'At least one callback (\'up\', \'down\', \'left\' or \'right\') must be provided'
+            ));
         });
 
         it('does not throw an error if only an \'up\' callback is provided', function () {
@@ -67,6 +85,22 @@ describe('Service: wheelie', function () {
             }, 'not to error');
         });
 
+        it('does not throw an error if only a \'left\' callback is provided', function () {
+            expect(function () {
+                wheelie.bind(element, {
+                    left: function () {}
+                });
+            }, 'not to error');
+        });
+
+        it('does not throw an error if only a \'right\' callback is provided', function () {
+            expect(function () {
+                wheelie.bind(element, {
+                    right: function () {}
+                });
+            }, 'not to error');
+        });
+
         it('stores a reference to the \'bindWheel\' function in the element\'s data', function () {
             wheelie.bind(element, {
                 down: function () {},
@@ -78,19 +112,25 @@ describe('Service: wheelie', function () {
 
     describe('when bound to an element', function () {
         var upSpy,
-            downSpy;
+            downSpy,
+            leftSpy,
+            rightSpy;
 
         beforeEach(inject(function (_wheelie_) {
-            upSpy = sinon.spy().named('mousewheelUp');
-            downSpy = sinon.spy().named('mousewheelDown');
+            upSpy = sinon.spy().named('wheelUp');
+            downSpy = sinon.spy().named('wheelDown');
+            leftSpy = sinon.spy().named('wheelLeft');
+            rightSpy = sinon.spy().named('wheelRight');
 
             _wheelie_.bind(element, {
                 up: upSpy,
-                down: downSpy
+                down: downSpy,
+                left: leftSpy,
+                right: rightSpy
             });
         }));
 
-        it('calls the \'up\' callback with the event on mousewheel up', function () {
+        it('calls the \'up\' callback with the event on wheel up', function () {
             element.triggerHandler({
                 type: 'wheel',
                 deltaY: -120
@@ -103,7 +143,7 @@ describe('Service: wheelie', function () {
             });
         });
 
-        it('calls the \'down\' callback with the event on mousewheel down', function () {
+        it('calls the \'down\' callback with the event on wheel down', function () {
             element.triggerHandler({
                 type: 'wheel',
                 deltaY: 120
@@ -116,7 +156,33 @@ describe('Service: wheelie', function () {
             });
         });
 
-        it('does not call the \'up\' callback on mousewheel down', function () {
+        it('calls the \'left\' callback with the event on wheel left', function () {
+            element.triggerHandler({
+                type: 'wheel',
+                deltaX: -120
+            });
+            expect(leftSpy, 'to have calls satisfying', function () {
+                leftSpy({
+                    type: 'wheel',
+                    deltaX: -120
+                });
+            });
+        });
+
+        it('calls the \'right\' callback with the event on wheel right', function () {
+            element.triggerHandler({
+                type: 'wheel',
+                deltaX: 120
+            });
+            expect(rightSpy, 'to have calls satisfying', function () {
+                rightSpy({
+                    type: 'wheel',
+                    deltaX: 120
+                });
+            });
+        });
+
+        it('does not call the \'up\' callback on wheel down', function () {
             element.triggerHandler({
                 type: 'wheel',
                 deltaY: 120
@@ -124,7 +190,7 @@ describe('Service: wheelie', function () {
             expect(upSpy, 'was not called');
         });
 
-        it('does not call the \'down\' callback on mousewheel up', function () {
+        it('does not call the \'down\' callback on wheel up', function () {
             element.triggerHandler({
                 type: 'wheel',
                 deltaY: -120
@@ -132,35 +198,69 @@ describe('Service: wheelie', function () {
             expect(downSpy, 'was not called');
         });
 
-      // from a bug report: https://github.com/joelmukuthu/angular-snapscroll/issues/16
-        it('does not call any callback if mousewheel delta is 0', function () {
+        it('does not call the \'up\' callback on wheel left', function () {
             element.triggerHandler({
                 type: 'wheel',
-                wheelDelta: 0,
-                detail: 0,
+                deltaX: -120
+            });
+            expect(upSpy, 'was not called');
+        });
+
+        it('does not call the \'down\' callback on wheel right', function () {
+            element.triggerHandler({
+                type: 'wheel',
+                deltaX: 120
+            });
+            expect(downSpy, 'was not called');
+        });
+
+        it('does not call the \'left\' callback on wheel up', function () {
+            element.triggerHandler({
+                type: 'wheel',
+                deltaY: -120
+            });
+            expect(leftSpy, 'was not called');
+        });
+
+        it('does not call the \'right\' callback on wheel down', function () {
+            element.triggerHandler({
+                type: 'wheel',
+                deltaY: 120
+            });
+            expect(leftSpy, 'was not called');
+        });
+
+        // from a bug report: https://github.com/joelmukuthu/angular-snapscroll/issues/16
+        it('does not call any callback if wheel delta is 0', function () {
+            element.triggerHandler({
+                type: 'wheel',
+                deltaX: 0,
                 deltaY: 0
             });
             expect(upSpy, 'was not called');
             expect(downSpy, 'was not called');
+            expect(leftSpy, 'was not called');
+            expect(rightSpy, 'was not called');
         });
 
-        it('does not call any callback if mousewheel delta is NaN', function () {
+        it('does not call any callback if wheel delta is undefined', function () {
             element.triggerHandler({
                 type: 'wheel',
-                wheelDelta: NaN,
-                detail: NaN,
-                deltaY: NaN
+                deltaX: undefined,
+                deltaY: undefined
             });
             expect(upSpy, 'was not called');
             expect(downSpy, 'was not called');
+            expect(leftSpy, 'was not called');
+            expect(rightSpy, 'was not called');
         });
 
-        it('uses event.originalEvent to get the mousewheel delta if the property is set', function () {
+        it('uses event.originalEvent to get the wheel delta if the property is set', function () {
             element.triggerHandler({
                 type: 'wheel',
-                // this represents mousewheel up
+                // this represents wheel up
                 deltaY: -120,
-                // but this represents mousewheel down
+                // but this represents wheel down
                 originalEvent: {
                     deltaY: 120
                 }
@@ -182,8 +282,8 @@ describe('Service: wheelie', function () {
 
         beforeEach(inject(function (_wheelie_) {
             wheelie = _wheelie_;
-            upSpy = sinon.spy().named('mousewheelUp');
-            downSpy = sinon.spy().named('mousewheelDown');
+            upSpy = sinon.spy().named('wheelUp');
+            downSpy = sinon.spy().named('wheelDown');
 
             wheelie.bind(element, {
                 up: upSpy,

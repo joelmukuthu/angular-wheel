@@ -14,8 +14,19 @@ angular
             if (isDefined(callbacks.down) && !isFunction(callbacks.down)) {
                 throw new Error('The \'down\' callback must be a function');
             }
-            if (!isDefined(callbacks.up) && !isDefined(callbacks.down)) {
-                throw new Error('At least one callback (\'up\' or \'down\') must be provided');
+            if (isDefined(callbacks.left) && !isFunction(callbacks.left)) {
+                throw new Error('The \'left\' callback must be a function');
+            }
+            if (isDefined(callbacks.right) && !isFunction(callbacks.right)) {
+                throw new Error('The \'right\' callback must be a function');
+            }
+            if (!isDefined(callbacks.up) &&
+                !isDefined(callbacks.down) &&
+                !isDefined(callbacks.left) &&
+                !isDefined(callbacks.right)) {
+                throw new Error(
+                    'At least one callback (\'up\', \'down\', \'left\' or \'right\') must be provided'
+                );
             }
 
             function bindWheel(e) {
@@ -23,16 +34,17 @@ angular
                     e = e.originalEvent;
                 }
 
-                var delta = Math.max(-1, Math.min(1, -e.deltaY));
+                var deltaX = Math.max(-1, Math.min(1, -e.deltaX));
+                var deltaY = Math.max(-1, Math.min(1, -e.deltaY));
 
-                if (isNaN(delta) || delta === 0) {
-                    return;
+                if (deltaX) {
+                    deltaX > 0 && callbacks.left && callbacks.left(e);
+                    deltaX < 0 && callbacks.right && callbacks.right(e);
                 }
 
-                if (delta > 0) {
-                    callbacks.up && callbacks.up(e);
-                } else {
-                    callbacks.down && callbacks.down(e);
+                if (deltaY) {
+                    deltaY > 0 && callbacks.up && callbacks.up(e);
+                    deltaY < 0 && callbacks.down && callbacks.down(e);
                 }
             }
 
