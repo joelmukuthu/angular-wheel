@@ -5,7 +5,7 @@ angular
     var isFunction = angular.isFunction;
 
     return {
-        bind: function (element, callbacks) {
+        bind: function (element, callbacks, ignoreClassName) {
             callbacks = callbacks || {};
 
             if (isDefined(callbacks.up) && !isFunction(callbacks.up)) {
@@ -32,6 +32,11 @@ angular
             function bindWheel(e) {
                 if (e.originalEvent) {
                     e = e.originalEvent;
+                }
+
+                if (ignoreClassName &&
+                    angular.element(e.target).hasClass(ignoreClassName)) {
+                    return;
                 }
 
                 if (e.deltaX) {

@@ -18,19 +18,24 @@ Or simply download the [latest release](https://github.com/joelmukuthu/angular-w
 ### Usage
 The pre-built files can be found in the `dist/` directory.
 `dist/angular-wheelie.min.js` is minified and production-ready. Example usage:
+
 ```html
 <script src="dist/angular-wheelie.min.js"></script>
 ```
+
 Add `wheelie` to your app's module dependencies:
+
 ```javascript
 angular.module('myapp', ['wheelie']);
 ```
+
 And now you can use the `wheelie` service in your controllers, directives,
 services etc. Example usage in a controller:
+
 ```javascript
 app.controller('MyController', [ '$scope', 'wheelie', function ($scope, wheelie) {
     var target = angular.element('#someElement');
-    // To listen for wheel events
+    // To listen for wheel events:
     wheelie.bind(target, {
         up: function (event) {
             console.log('wheel up on element #someElement!');
@@ -50,6 +55,21 @@ app.controller('MyController', [ '$scope', 'wheelie', function ($scope, wheelie)
     $scope.on('$destroy', function () {
         wheelie.unbind(target);
     });
+}]);
+```
+
+Not all callbacks are required, but at least one must be provided.
+
+In the above example, all wheel events from `#someElement` will trigger one of
+the callbacks. To ignore wheel events from a nested element, pass the nested
+element's class-name as the third parameter:
+
+```javascript
+app.controller('MyController', [ '$scope', 'wheelie', function ($scope, wheelie) {
+    var target = angular.element('#someElement');
+    var callbacks = { /* up, right, down, left callbacks */ };
+    var classNameToIgnore = 'some-nested-elements';
+    wheelie.bind(target, callbacks, classNameToIgnore);
 }]);
 ```
 

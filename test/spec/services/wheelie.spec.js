@@ -111,10 +111,10 @@ describe('Service: wheelie', function () {
     });
 
     describe('when bound to an element', function () {
-        var upSpy,
-            downSpy,
-            leftSpy,
-            rightSpy;
+        var upSpy;
+        var downSpy;
+        var leftSpy;
+        var rightSpy;
 
         beforeEach(inject(function (_wheelie_) {
             upSpy = sinon.spy().named('wheelUp');
@@ -364,6 +364,150 @@ describe('Service: wheelie', function () {
                 upSpy({
                     type: 'wheel',
                     deltaY: -120
+                });
+            });
+        });
+    });
+
+    describe('when bound with a class-name to ignore', function () {
+        var upSpy;
+        var downSpy;
+        var leftSpy;
+        var rightSpy;
+        var ignoredElement;
+        var elementNotIgnored;
+
+        beforeEach(inject(function (_wheelie_) {
+            var html = [
+                '<div style="height: 100px; overflow: auto">',
+                '<div style="height: 1000px">',
+                '<div class="ignore-me">',
+                '</div>',
+                '<div class="do-not-ignore-me">',
+                '</div>',
+                '</div>',
+                '</div>'
+            ].join('');
+
+            var element = angular.element(html);
+            angular.element(document).find('body').append(element);
+
+            ignoredElement = document.querySelector('div.ignore-me');
+            elementNotIgnored = document.querySelector('div.do-not-ignore-me');
+
+            upSpy = sinon.spy().named('wheelUp');
+            downSpy = sinon.spy().named('wheelDown');
+            leftSpy = sinon.spy().named('wheelLeft');
+            rightSpy = sinon.spy().named('wheelRight');
+
+            _wheelie_.bind(element, {
+                up: upSpy,
+                down: downSpy,
+                left: leftSpy,
+                right: rightSpy
+            }, 'ignore-me');
+        }));
+
+        function createWheelEvent(deltaObject) {
+            // ideally: return new WheelEvent('wheel', deltaObject); but
+            // PhantomJS doesn't support it: https://github.com/ariya/phantomjs/issues/11289
+            var event = document.createEvent('WheelEvent');
+            event.initEvent('wheel', true, true);
+            Object.keys(deltaObject).forEach(function (key) {
+                event[key] = deltaObject[key];
+            });
+            return event;
+        }
+
+        function trigger(element, event) {
+            // would use triggerHandler but it doesn't bubble the event up
+            element.dispatchEvent(event);
+        }
+
+        it('does not call any callback on wheel up on an element with the ignored class-name', function () {
+            trigger(ignoredElement, createWheelEvent({
+                deltaY: -120
+            }));
+            expect(upSpy, 'was not called');
+            expect(rightSpy, 'was not called');
+            expect(downSpy, 'was not called');
+            expect(leftSpy, 'was not called');
+        });
+
+        it('does not call any callback on wheel down on an element with the ignored class-name', function () {
+            trigger(ignoredElement, createWheelEvent({
+                deltaY: 120
+            }));
+            expect(upSpy, 'was not called');
+            expect(rightSpy, 'was not called');
+            expect(downSpy, 'was not called');
+            expect(leftSpy, 'was not called');
+        });
+
+        it('does not call any callback on wheel left on an element with the ignored class-name', function () {
+            trigger(ignoredElement, createWheelEvent({
+                deltaX: -120
+            }));
+            expect(upSpy, 'was not called');
+            expect(rightSpy, 'was not called');
+            expect(downSpy, 'was not called');
+            expect(leftSpy, 'was not called');
+        });
+
+        it('does not call any callback on wheel right on an element with the ignored class-name', function () {
+            trigger(ignoredElement, createWheelEvent({
+                deltaX: 120
+            }));
+            expect(upSpy, 'was not called');
+            expect(rightSpy, 'was not called');
+            expect(downSpy, 'was not called');
+            expect(leftSpy, 'was not called');
+        });
+
+        it('calls the \'up\' callback on wheel up on an element not containing the ignored class-name', function () {
+            trigger(elementNotIgnored, createWheelEvent({
+                deltaY: -120
+            }));
+            expect(upSpy, 'to have calls satisfying', function () {
+                upSpy({
+                    type: 'wheel',
+                    deltaY: -120
+                });
+            });
+        });
+
+        it('calls the \'down\' callback on wheel down on an element not containing the ignored class-name', function () {
+            trigger(elementNotIgnored, createWheelEvent({
+                deltaY: 120
+            }));
+            expect(downSpy, 'to have calls satisfying', function () {
+                downSpy({
+                    type: 'wheel',
+                    deltaY: 120
+                });
+            });
+        });
+
+        it('calls the \'left\' callback on wheel left on an element not containing the ignored class-name', function () {
+            trigger(elementNotIgnored, createWheelEvent({
+                deltaX: -120
+            }));
+            expect(leftSpy, 'to have calls satisfying', function () {
+                leftSpy({
+                    type: 'wheel',
+                    deltaX: -120
+                });
+            });
+        });
+
+        it('calls the \'right\' callback on wheel right on an element not containing the ignored class-name', function () {
+            trigger(elementNotIgnored, createWheelEvent({
+                deltaX: 120
+            }));
+            expect(rightSpy, 'to have calls satisfying', function () {
+                rightSpy({
+                    type: 'wheel',
+                    deltaX: 120
                 });
             });
         });
