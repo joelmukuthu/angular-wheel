@@ -1,9 +1,9 @@
 /**
  * angular-wheelie
- * Version: 2.0.0
+ * Version: 2.1.0
  * (c) 2016 Joel Mukuthu
  * MIT License
- * Built on: 05-11-2016 17:55:10 GMT+0100
+ * Built on: 10-11-2016 13:50:20 GMT+0100
  **/
 
 angular.module('wheelie', []);
@@ -15,7 +15,7 @@ angular
     var isFunction = angular.isFunction;
 
     return {
-        bind: function (element, callbacks) {
+        bind: function (element, callbacks, ignoreClassName) {
             callbacks = callbacks || {};
 
             if (isDefined(callbacks.up) && !isFunction(callbacks.up)) {
@@ -42,6 +42,11 @@ angular
             function bindWheel(e) {
                 if (e.originalEvent) {
                     e = e.originalEvent;
+                }
+
+                if (ignoreClassName &&
+                    angular.element(e.target).hasClass(ignoreClassName)) {
+                    return;
                 }
 
                 if (e.deltaX) {
