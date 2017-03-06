@@ -1,9 +1,9 @@
 /**
  * angular-wheelie
- * Version: 3.0.0
+ * Version: 3.0.1
  * (c) 2016-2017 Joel Mukuthu
  * MIT License
- * Built on: 06-03-2017 12:06:09 GMT+0100
+ * Built on: 06-03-2017 12:12:32 GMT+0100
  **/
 
 if (typeof exports === 'object') {
