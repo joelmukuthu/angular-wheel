@@ -1,16 +1,18 @@
 /**
  * angular-wheelie
- * Version: 2.1.0
- * (c) 2016 Joel Mukuthu
+ * Version: 3.0.0
+ * (c) 2016-2017 Joel Mukuthu
  * MIT License
- * Built on: 10-11-2016 13:50:20 GMT+0100
+ * Built on: 06-03-2017 12:06:09 GMT+0100
  **/
+
+if (typeof exports === 'object') {
+    module.exports = 'wheelie';
+}
 
 angular.module('wheelie', []);
 
-angular
-.module('wheelie')
-.factory('wheelie', [function () {
+angular.module('wheelie').factory('wheelie', [function () {
     var isDefined = angular.isDefined;
     var isFunction = angular.isFunction;
 
