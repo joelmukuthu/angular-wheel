@@ -1,6 +1,4 @@
-angular
-.module('wheelie')
-.factory('wheelie', [function () {
+angular.module('wheelie').factory('wheelie', [function () {
     var isDefined = angular.isDefined;
     var isFunction = angular.isFunction;
 
