@@ -319,8 +319,8 @@ describe('Service: wheelie', function () {
                 });
             });
 
-            upSpy.reset();
-            downSpy.reset();
+            upSpy.resetHistory();
+            downSpy.resetHistory();
             wheelie.unbind(element);
 
             element.triggerHandler({
