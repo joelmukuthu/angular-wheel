@@ -35,7 +35,7 @@
     "phantomjs-prebuilt": "^2.1.8",
     "sinon": "^6.0.0",
     "unexpected": "^10.13.3",
-    "unexpected-sinon": "^10.2.1"
+    "unexpected-sinon": "10.11.0"
   },
   "dependencies": {
     "angular": "^1.2.24"
