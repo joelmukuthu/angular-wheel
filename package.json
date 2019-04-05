@@ -6,8 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "karma start test/karma.conf.js",
-    "build": "npm run lint && npm test && grunt build",
-    "prepublish": "npm run lint && npm test"
+    "build": "npm run lint && npm test && grunt build"
   },
   "keywords": [
     "angular",
