@@ -457,8 +457,7 @@ describe('Service: wheelie', function () {
             expect(leftSpy, 'was not called');
         });
 
-        // can't get these tests to run in chrome headless
-        it.skip('calls the \'up\' callback on wheel up on an element not containing the ignored class-name', function () {
+        it('calls the \'up\' callback on wheel up on an element not containing the ignored class-name', function () {
             trigger(elementNotIgnored, createWheelEvent({
                 deltaY: -120
             }));
@@ -470,7 +469,7 @@ describe('Service: wheelie', function () {
             });
         });
 
-        it.skip('calls the \'down\' callback on wheel down on an element not containing the ignored class-name', function () {
+        it('calls the \'down\' callback on wheel down on an element not containing the ignored class-name', function () {
             trigger(elementNotIgnored, createWheelEvent({
                 deltaY: 120
             }));
@@ -482,7 +481,7 @@ describe('Service: wheelie', function () {
             });
         });
 
-        it.skip('calls the \'left\' callback on wheel left on an element not containing the ignored class-name', function () {
+        it('calls the \'left\' callback on wheel left on an element not containing the ignored class-name', function () {
             trigger(elementNotIgnored, createWheelEvent({
                 deltaX: -120
             }));
@@ -494,7 +493,7 @@ describe('Service: wheelie', function () {
             });
         });
 
-        it.skip('calls the \'right\' callback on wheel right on an element not containing the ignored class-name', function () {
+        it('calls the \'right\' callback on wheel right on an element not containing the ignored class-name', function () {
             trigger(elementNotIgnored, createWheelEvent({
                 deltaX: 120
             }));
