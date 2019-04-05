@@ -459,7 +459,8 @@ describe('Service: wheelie', function () {
 
         it('calls the \'up\' callback on wheel up on an element not containing the ignored class-name', function () {
             trigger(elementNotIgnored, createWheelEvent({
-                deltaY: -120
+                deltaY: -120,
+                bubbles: true
             }));
             expect(upSpy, 'to have calls satisfying', function () {
                 upSpy({
@@ -471,7 +472,8 @@ describe('Service: wheelie', function () {
 
         it('calls the \'down\' callback on wheel down on an element not containing the ignored class-name', function () {
             trigger(elementNotIgnored, createWheelEvent({
-                deltaY: 120
+                deltaY: 120,
+                bubbles: true
             }));
             expect(downSpy, 'to have calls satisfying', function () {
                 downSpy({
@@ -483,7 +485,8 @@ describe('Service: wheelie', function () {
 
         it('calls the \'left\' callback on wheel left on an element not containing the ignored class-name', function () {
             trigger(elementNotIgnored, createWheelEvent({
-                deltaX: -120
+                deltaX: -120,
+                bubbles: true
             }));
             expect(leftSpy, 'to have calls satisfying', function () {
                 leftSpy({
@@ -495,7 +498,8 @@ describe('Service: wheelie', function () {
 
         it('calls the \'right\' callback on wheel right on an element not containing the ignored class-name', function () {
             trigger(elementNotIgnored, createWheelEvent({
-                deltaX: 120
+                deltaX: 120,
+                bubbles: true
             }));
             expect(rightSpy, 'to have calls satisfying', function () {
                 rightSpy({
