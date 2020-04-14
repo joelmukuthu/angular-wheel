@@ -6,6 +6,10 @@
 angular-wheelie exposes a service that allows you to bind wheel events to an
 angular element.
 
+## UPDATE 2020-04-14: Archived
+
+This project still works as is but is no longer maintained.
+
 ### Installation
 Install with bower:
 ```sh
